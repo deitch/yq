@@ -1,0 +1,53 @@
+#!/bin/bash/bin/env bash
+#
+# Based loosely on by https://gist.github.com/epiloque/8cf512c6d64641bde388
+
+parse_yaml() {
+    local prefix=$1
+    local s
+    local w
+    local fs
+    s='[[:space:]]*'
+    w='[a-zA-Z0-9_]*'
+    fs="$(echo @|tr @ '\034')"
+    sed -ne "s|^\($s\)\($w\)$s:$s\"\(.*\)\"$s\$|\1$fs\2$fs\3|p" \
+         -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p" \
+         -e "s|^\($s\)\($w\)$s-$s\(.*\)$s\$|\1$fs-$fs\3|p" |
+    awk -v fs="$fs" -v prefix=$prefix -F"$fs" '{
+    indent = length($1)/2;
+    vname[indent] = $2;
+    for (i in vname) {if (i > indent) {delete vname[i]}}
+        if (length($3) > 0) {
+            vn=""; for (i=0; i<indent; i++) {vn=(vn)(".")(vname[i])}
+            # handle special case of a list item
+            if ($2 == "-") {
+                lists[vn] = 1;
+                saver = ($2)(" ")($3);
+                # how many do we have?
+                len = length(matches[vn]);
+                if (length(matches[vn]) == 0) {
+                    matches[vn] = saver;
+                } else {
+                    matches[vn] = (matches[vn])("\n")(saver);
+                }
+            } else {
+                vn=(vn)(".")($2)
+                matches[vn] = $3;
+            }
+        }
+    }
+    END {
+        result = matches[prefix];
+        printf("%s\n", result);
+    }'
+}
+
+# if there is no filter, we just show the input
+if [[ -z "$1" || "$1" == "." ]]; then
+  cat
+else
+  parse_yaml $1
+fi
+
+
+

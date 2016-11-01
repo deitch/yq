@@ -1,0 +1,9 @@
+version: "2"
+services:
+  web:
+    image: nginx
+    environment:
+      - MYENV=abcd
+      - OTHERENV=check
+    command: run this command
+    container_name: containerabc
