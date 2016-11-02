@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Based loosely on by https://gist.github.com/epiloque/8cf512c6d64641bde388
 
@@ -39,7 +39,7 @@ parse_yaml() {
 }
 
 # if there is no filter, we just show the input
-if [[ -z "$1" || "$1" == "." ]]; then
+if [ -z "$1" -o "$1" = "." ]; then
   cat
 else
   parse_yaml $1
