@@ -1,6 +1,6 @@
 FROM alpine:3.4
 MAINTAINER Avi Deitcher <https://github.com/deitch>
 
-COPY . /usr/src/install
+COPY yq /usr/local/bin/yq
 
-ENTRYPOINT ["/usr/src/install/yq"]
+ENTRYPOINT ["/usr/local/bin/yq"]
