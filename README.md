@@ -109,3 +109,18 @@ $ cat docker-compose.yml | yq .services.web.environment
 - OTHERENV=check
 $
 ````
+
+
+#### Children
+If the key points to a parent node of multiple children, it will return all of the children in yml
+
+````
+$ cat docker-compose.yml | yq .services.web
+    image: nginx
+    environment:
+      - MYENV=abcd
+      - OTHERENV=check
+    command: run this command
+    container_name: containerabc
+$
+````
