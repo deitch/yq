@@ -26,19 +26,19 @@ runtest() {
         echo "$expected"
         echo "Actual:"
         echo "$RET"
+				return 1
     fi
 }
 
 # this should be a very simple set of tests
-runtest .version "2"
+runtest .version '"2"'
 runtest .services.web.image nginx
 runtest . "$DATA"
 runtest "" "$DATA"
 
 envdata=$(echo "$DATA" | grep ENV)
-runtest .services.web.environment "$envdata"
+runtest .services.web.environment "$(echo -n "$envdata" | sed -e 's/^[ \t]*//g')"
 
 
 echo "All tests pass!"
 exit 0
-
