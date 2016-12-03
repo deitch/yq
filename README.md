@@ -1,23 +1,20 @@
 # yq
 
-This is our instantiation of yq, a [yml](yaml.org) file parser and querier. Unlike most of the other yq implementations out there (e.g. on github), this will run on any platform with basic Linux/Unix/macOS tools installed:
-
-* `sh`
-* `sed`
-* `awk`
-
-We also are working at implementing it directly in [go](golang.org).
+This is our instantiation of yq, a [yml](yaml.org) file parser and querier. Unlike most of the other yq implementations out there (e.g. on github). As it is go-based and compiled, it will run on any platform.
 
 It can be run as a standalone script or as a Docker container.
 
 ## Installation
 
-#### Script
-Clone this repo `git clone https://github.com/deitch/yq.git` and use the file in the directory `yq`.
+#### Build from source
 
-If you prefer, just `curl` the file directly: `curl -o yq https://raw.githubusercontent.com/deitch/yq/master/yq`
+1. Run `go get github.com/deitch/yq`
+2. `go install github.com/deitch/yq`
+3. Run `yq`
 
-We recommend putting it in your `PATH`, either by changing your `PATH` to point to the directory it is installed in, or installing it in a typical directory already in `PATH`, e.g. `/usr/local/bin/`.
+#### Download the binary
+
+Get the release for your platform from https://github.com/deitch/yq/releases
 
 #### Container
 Just run it:
