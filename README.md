@@ -2,7 +2,7 @@
 
 This is our instantiation of yq, a [yml](yaml.org) file parser and querier. Unlike most of the other yq implementations out there (e.g. on github). As it is go-based and compiled, it will run on any platform.
 
-It can be run as a standalone script or as a Docker container.
+It can be run as a standalone binary or as a Docker container.
 
 ## Installation
 
