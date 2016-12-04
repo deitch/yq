@@ -1,0 +1,18 @@
+FROM golang:1.7.3
+
+ENV REPO deitch/yq
+ENV FULLREPO github.com/${REPO}
+
+# we work in src of GOPATH
+WORKDIR /go/src
+
+RUN mkdir -p /go/src/${FULLREPO}
+COPY . /go/src/${FULLREPO}
+
+WORKDIR /go/src/${FULLREPO}
+
+RUN curl https://glide.sh/get | sh
+RUN glide install
+RUN go build -o yq
+
+CMD [ "./yq" ]
