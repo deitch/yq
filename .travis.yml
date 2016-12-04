@@ -1,4 +1,5 @@
 sudo: required
+language: go
 services:
 - docker
 script:
@@ -13,3 +14,4 @@ env:
   - secure: oC9O0V3bPIM4QuwgRkGhOXz0GcZyJBC+GjUXEziMp6JZvL7/t52zEyp2CJUfztvVihoyKnQIbCmIYVqxk5N4Wj5XpIu7QYcqucWmSug7B6VYu8UvJJIRP/4NPeJX/IRnAwS1LFpDiT6xoaaGRktJxgF/vUXpV/g46Cd/ZovRWhkbYw7g5I2Pj/mP6zjyABQ81MIzOKxZGMFsydz52uTogMYBA+9pDftt8n8PmRiOwXjku1vRiOiyQ8wEjrtP8UoMD9A6/Zk/HBYZtw/pUpZfNPDm/B4H4E8ln7VLuIVX/xHNUtQsqT/ywEOtxhM4Xfm7TUexbqc06flZasQh0kpgYyUGUwgf5cn/L3aKAlGNBCAwGjiBMfSy65jmOznEeWiq/OrPol0VxN3/kOL/cSk1BOU2ap3YpRhJ330aEvdbXNq9kyS2th07HrPPtIou8bg3vk67KYLeJJ/XpYjOZDFDTNPFhQuynHyioRpcqTq/xJSOOtvF4g1pqmnFStF0t1XtXnHK9803eFr+PA4EBHkD/0f8lErJJQdurRG51Izpt/Cqajo/e0Lpc5FEtzWPX3P33RJ7ArtTdWPDk0BcPbiBfEtkjXBJ0lfmHz4GiuzEGx7uH6HhAsjgz5zCat9obeOIFAVI+Y0OCYwsP8ElfSFzFQyalb7Hkdj/bO9xIRpZKr0=
 before_install:
 - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD
+- go get github.com/aktau/github-release
