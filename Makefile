@@ -26,7 +26,6 @@ ifneq ($(strip $(APP_VERSION)),)
 	github-release upload -u deitch -r yq --tag $(APP_VERSION) --name yq-linux-amd64 --file dist/yq-linux-amd64
 	github-release upload -u deitch -r yq --tag $(APP_VERSION) --name yq-windows-amd64 --file dist/yq-windows-amd64.exe
 	docker push $(DEPLOY_IMAGE_NAME)
-	echo "was not blank"
 endif
 
 tests:
