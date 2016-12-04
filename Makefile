@@ -7,8 +7,14 @@ export BUILD_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 export APP_VERSION ?=  $(shell git describe --exact-match 2>/dev/null)
 
 
-DEPLOY_IMAGE_NAME ?= deitch/yq
+BASE_DEPLOY_IMAGE_NAME ?= deitch/yq
 BUILD_IMAGE_NAME ?= yq_build
+
+ifneq ($(strip $(APP_VERSION)),)
+DEPLOY_IMAGE_NAME ?= $(BASE_DEPLOY_IMAGE_NAME):$(APP_VERSION)
+else
+DEPLOY_IMAGE_NAME ?= $(BASE_DEPLOY_IMAGE_NAME)
+endif
 
 .PHONY: build push
 
