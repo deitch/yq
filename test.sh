@@ -35,6 +35,8 @@ runtest .version '"2"'
 runtest .services.web.image nginx
 runtest . "$DATA"
 runtest "" "$DATA"
+runtest .services.web.environment "$(echo -e "$DATA" | awk '/ENV/ {print $1,$2}')"
+runtest .services.web.environment[] "$(echo -e "$DATA" | awk '/ENV/ {print $2}')"
 
 envdata=$(echo "$DATA" | grep ENV)
 runtest .services.web.environment "$(echo -n "$envdata" | sed -e 's/^[ \t]*//g')"
